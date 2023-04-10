@@ -1,6 +1,6 @@
 # BTL-Javaopp
 
 Thành Viên :  Ngô Thị Linh  
-              Lưu Hiểu Khánh 
+              Lưu Hiểu Khánh
               Nguyễn Việt Hưng 
               
