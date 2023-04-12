@@ -1,0 +1,8 @@
+CREATE TABLE ChucVu (
+    ChucVu NVARCHAR(50) PRIMARY KEY,
+    TienLuong INT
+);
+INSERT INTO ChucVu(ChucVu,TienLuong) VALUES
+('Nhân viên',5000000),
+('Tru?ng phòng',10000000),
+('Giám d?c',50000000);
