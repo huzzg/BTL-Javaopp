@@ -111,11 +111,7 @@ public class chucnang implements Initializable {
     /**
      *
      */
-    ObservableList<nhanvien> nhanvienList = FXCollections.observableArrayList(
-            new nhanvien(1, "Pham Trung Ta", "ta@gmail.com", 20, "Ha Noi", 10, "Male", "Marketing", "Manager", 40000),
-            new nhanvien(2, "Phan Van Hung", "hung@gmail.com", 20, "Nam Dinh", 20, "Male", "Accounting", "CEO", 180000),
-            new nhanvien(3, "Le Anh Duc", "duc@gmail.com", 30, "Ha Noi", 20, "Male", "Technology", "Founder", 100000)
-    );
+    
 
     public ObservableList<nhanvien> getNhanvienList() {
         return nhanvienList;
