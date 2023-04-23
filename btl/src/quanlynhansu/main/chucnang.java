@@ -111,11 +111,14 @@ public class chucnang implements Initializable {
     /**
      *
      */
-    
+    ObservableList<nhanvien> nhanvienList = FXCollections.observableArrayList(
+        new nhanvien(1, "Nguyen Viet Hung", "hung12@gmail.com", 20, "Ha Noi", 10, "Male", "Marketing", "Manager", 20000),
+        new nhanvien(2, "Luu Hieu Khanh", "khanh123@gmail.com", 20, "Hai Duong", 20, "Female", "Accounting", "Director", 30000),
+        new nhanvien(3, "Ngo Thi Linh", "linh14@gmail.com", 20, "Ha Noi", 20, "Female", "Technology", "CEO", 500000),
+        new nhanvien(4, "Nguyen Van A", "vana12@gmail.com", 20, "Nam Dinh", 10, "other", "Engineering", "Founder", 10000)
+    );
 
-    public ObservableList<nhanvien> getNhanvienList() {
-        return nhanvienList;
-    }
+    
 
 
     @Override
@@ -135,9 +138,17 @@ public class chucnang implements Initializable {
         partText.setItems(partTextList);
         positionText.setItems(positionList);
 
-    }
+    
 
+    searchText.textProperty().addListener(new ChangeListener() {
+        public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+            searchList((String) oldValue, (String) newValue);
+        }
 
+        private void searchList(String oldValue, String newValue) {
+        }
+    });
+}
     /**
      * @param e
      */
@@ -156,7 +167,183 @@ public class chucnang implements Initializable {
     public void positionAction(ActionEvent e) {
     }
 
-}
+
+    public void searchList(String oldValue, String newValue) {
+        ObservableList<nhanvien> filteredList = FXCollections.observableArrayList();
+        if (searchText == null || (newValue.length() < oldValue.length()) || newValue == null) {
+            table.setItems(nhanvienList);
+        } else {
+            newValue = newValue.toUpperCase();
+            for (nhanvien nhanvien : table.getItems()) {
+                String idSearch = String.valueOf(nhanvien.getId());
+                String emailSearch = nhanvien.getEmail();
+                if (idSearch.toUpperCase().contains(newValue) || emailSearch.toUpperCase().contains(newValue)) {
+                    filteredList.add(nhanvien);
+                }
+            }
+            table.setItems(filteredList);
+        }
+    }
+
+    // điều kiện ko trùng id
+    /**
+     * @param event
+     * @return
+     */
+    public boolean isValidInput(ActionEvent event) {
+        Boolean validInput = true;
+
+        for (nhanvien nhanvien : table.getItems()) {
+            String idSearch = valueOf(nhanvien.getId());
+            if (idSearch.contains(idText.getText())) {
+                validInput = false;
+                Alert emptyFirstName = new Alert(Alert.AlertType.WARNING, "Warning", ButtonType.OK);
+                Window owner = ((Node) event.getTarget()).getScene().getWindow();
+                emptyFirstName.setContentText("Duplicate id please enter another id.");
+                emptyFirstName.initModality(Modality.APPLICATION_MODAL);
+                emptyFirstName.initOwner(owner);
+                emptyFirstName.showAndWait();
+                if (emptyFirstName.getResult() == ButtonType.OK) {
+                    emptyFirstName.close();
+                    idText.requestFocus();
+                }
+            }
+        }
+
+        if (idText == null || idText.getText().trim().isEmpty()) {
+            validInput = false;
+            Alert emptyFirstName = new Alert(Alert.AlertType.WARNING, "Warning", ButtonType.OK);
+            Window owner = ((Node) event.getTarget()).getScene().getWindow();
+            emptyFirstName.setContentText("Id is empty or duplicate");
+            emptyFirstName.initModality(Modality.APPLICATION_MODAL);
+            emptyFirstName.initOwner(owner);
+            emptyFirstName.showAndWait();
+            if (emptyFirstName.getResult() == ButtonType.OK) {
+                emptyFirstName.close();
+                idText.requestFocus();
+            }
+        }
+        if (nameText == null || nameText.getText().trim().isEmpty()) {
+            validInput = false;
+            Alert emptyLastName = new Alert(Alert.AlertType.WARNING, "Warning", ButtonType.OK);
+            Window owner = ((Node) event.getTarget()).getScene().getWindow();
+            emptyLastName.setContentText("Name is EMPTY");
+            emptyLastName.initModality(Modality.APPLICATION_MODAL);
+            emptyLastName.initOwner(owner);
+            emptyLastName.showAndWait();
+            if (emptyLastName.getResult() == ButtonType.OK) {
+                emptyLastName.close();
+                nameText.requestFocus();
+            }
+        }
+        if (emailText == null || emailText.getText().trim().isEmpty()) {
+            validInput = false;
+            Alert emptyUIN = new Alert(Alert.AlertType.WARNING, "Warning", ButtonType.OK);
+            Window owner = ((Node) event.getTarget()).getScene().getWindow();
+            emptyUIN.setContentText("Email is EMPTY");
+            emptyUIN.initModality(Modality.APPLICATION_MODAL);
+            emptyUIN.initOwner(owner);
+            emptyUIN.showAndWait();
+            if (emptyUIN.getResult() == ButtonType.OK) {
+                emptyUIN.close();
+                emailText.requestFocus();
+            }
+        }
+        if (ageText == null || ageText.getText().trim().isEmpty()) {
+            validInput = false;
+            Alert emptyNetID = new Alert(Alert.AlertType.WARNING, "Warning", ButtonType.OK);
+            Window owner = ((Node) event.getTarget()).getScene().getWindow();
+            emptyNetID.setContentText("Age is EMPTY");
+            emptyNetID.initModality(Modality.APPLICATION_MODAL);
+            emptyNetID.initOwner(owner);
+            emptyNetID.showAndWait();
+            if (emptyNetID.getResult() == ButtonType.OK) {
+                emptyNetID.close();
+                ageText.requestFocus();
+            }
+        }
+        if (addressText == null || addressText.getText().trim().isEmpty()) {
+            validInput = false;
+            Alert emptyMajor = new Alert(Alert.AlertType.WARNING, "Warning", ButtonType.OK);
+            Window owner = ((Node) event.getTarget()).getScene().getWindow();
+            emptyMajor.setContentText("Address is EMPTY");
+            emptyMajor.initModality(Modality.APPLICATION_MODAL);
+            emptyMajor.initOwner(owner);
+            emptyMajor.showAndWait();
+            if (emptyMajor.getResult() == ButtonType.OK) {
+                emptyMajor.close();
+                addressText.requestFocus();
+            }
+        }
+        if (workdayText == null || workdayText.getText().trim().isEmpty()) {
+            validInput = false;
+            Alert emptyUIN = new Alert(Alert.AlertType.WARNING, "Warning", ButtonType.OK);
+            Window owner = ((Node) event.getTarget()).getScene().getWindow();
+            emptyUIN.setContentText("Workday is EMPTY");
+            emptyUIN.initModality(Modality.APPLICATION_MODAL);
+            emptyUIN.initOwner(owner);
+            emptyUIN.showAndWait();
+            if (emptyUIN.getResult() == ButtonType.OK) {
+                emptyUIN.close();
+                workdayText.requestFocus();
+            }
+        }
+        if (sexText.getValue() == null || sexText.getValue().trim().isEmpty()) {
+            validInput = false;
+            Alert emptyAge = new Alert(Alert.AlertType.WARNING, "Warning", ButtonType.OK);
+            Window owner = ((Node) event.getTarget()).getScene().getWindow();
+            emptyAge.setContentText("Sex is EMPTY");
+            emptyAge.initModality(Modality.APPLICATION_MODAL);
+            emptyAge.initOwner(owner);
+            emptyAge.showAndWait();
+            if (emptyAge.getResult() == ButtonType.OK) {
+                emptyAge.close();
+                sexText.requestFocus();
+            }
+        }
+        if (partText.getValue() == null || partText.getValue().trim().isEmpty()) {
+            validInput = false;
+            Alert emptyGPA = new Alert(Alert.AlertType.WARNING, "Warning", ButtonType.OK);
+            Window owner = ((Node) event.getTarget()).getScene().getWindow();
+            emptyGPA.setContentText("Part is EMPTY");
+            emptyGPA.initModality(Modality.APPLICATION_MODAL);
+            emptyGPA.initOwner(owner);
+            emptyGPA.showAndWait();
+            if (emptyGPA.getResult() == ButtonType.OK) {
+                emptyGPA.close();
+                partText.requestFocus();
+            }
+        }
+        if (positionText.getValue() == null || positionText.getValue().isEmpty()) {
+            validInput = false;
+            Alert emptyGender = new Alert(Alert.AlertType.WARNING, "Warning", ButtonType.OK);
+            Window owner = ((Node) event.getTarget()).getScene().getWindow();
+            emptyGender.setContentText("Position is EMPTY");
+            emptyGender.initModality(Modality.APPLICATION_MODAL);
+            emptyGender.initOwner(owner);
+            emptyGender.showAndWait();
+            if (emptyGender.getResult() == ButtonType.OK) {
+                emptyGender.close();
+                positionText.requestFocus();
+            }
+        }
+        return validInput;
+    }
+
+    /**
+     * 
+     */
+    public void resetText() {
+        idText.setText("");
+        nameText.setText("");
+        emailText.setText("");
+        ageText.setText("");
+        addressText.setText("");
+        workdayText.setText("");
+        sexText.setValue("");
+        partText.setValue("");
+        positionText.setValue("");
+    }
 
 public void add(ActionEvent e) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -249,15 +436,6 @@ public void add(ActionEvent e) {
         }
     }
 }
-
-private boolean isValidInput(ActionEvent e) {
-    return false;
-}
-
-
-private void resetText() {
-}
-
 
 // Xoá
 public void delete(ActionEvent e) {
