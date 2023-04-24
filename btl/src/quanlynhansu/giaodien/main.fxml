@@ -23,7 +23,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlynhansu.main.chucnang">
     <top>
-        <Label alignment="CENTER" prefHeight="50.0" prefWidth="350.0" styleClass="leanhduc-title" text="Quản lý nhân sự" textAlignment="CENTER" textFill="#cd1111" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER">
+        <Label alignment="CENTER" prefHeight="50.0" prefWidth="350.0" styleClass="nhom9-title" text="Quản lý nhân sự" textAlignment="CENTER" textFill="#cd1111" textOverrun="CENTER_ELLIPSIS" BorderPane.alignment="CENTER">
             <font>
                 <Font size="30.0" />
             </font>
