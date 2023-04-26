@@ -1,8 +1,0 @@
-CREATE TABLE ChucVu (
-    ChucVu NVARCHAR(50) PRIMARY KEY,
-    TienLuong INT
-);
-INSERT INTO ChucVu(ChucVu,TienLuong) VALUES
-('Nhan vien',5000000),
-('Truong phong',10000000),
-('Giam doc',50000000);

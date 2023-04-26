@@ -1,8 +1,0 @@
-CREATE TABLE NhanVien (
-    ID INT PRIMARY KEY,
-    Ten NVARCHAR(50),
-    NgaySinh DATE,
-    DiaChi NVARCHAR(100),
-    ChucVu NVARCHAR(50),
-    Luong INT
-);
