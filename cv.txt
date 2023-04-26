@@ -3,6 +3,6 @@ CREATE TABLE ChucVu (
     TienLuong INT
 );
 INSERT INTO ChucVu(ChucVu,TienLuong) VALUES
-('Nhân viên',5000000),
-('Tru?ng phòng',10000000),
-('Giám d?c',50000000);
+('Nhan vien',5000000),
+('Truong phong',10000000),
+('Giam doc',50000000);
