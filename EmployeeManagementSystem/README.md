@@ -1,2 +1,2 @@
-# EmployeeManagementSystem
- Employee Management System in JavaFX
+# Quản lý nhân sự
+Quản lý nhân sự
